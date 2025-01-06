@@ -2,6 +2,8 @@ module Thermal
 
 using Gridap
 using Gridap.Algebra
+using GridapODEs.ODETools
+using GridapODEs.TransientFETools
 
 export calculate_temperature, temperature, calculate_temperature_transient, heat_flux
 
@@ -31,7 +33,7 @@ function calculate_temperature(
     Ω = Triangulation(model)
     dΩ = Measure(Ω, order)
 
-    a(u, v) = ∫(thermal_conductivity * ∇(v) ⋅ ∇(u))dΩ
+    a(u, v) = ∫(∇(v) ⋅ thermal_conductivity ⋅ ∇(u))dΩ
     b(v) = ∫(v * power_density)dΩ
 
     op = AffineFEOperator(a, b, U, V)

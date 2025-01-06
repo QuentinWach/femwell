@@ -5,7 +5,7 @@
 #       extension: .py
 #       format_name: percent
 #       format_version: '1.3'
-#       jupytext_version: 1.15.2
+#       jupytext_version: 1.15.0
 #   kernelspec:
 #     display_name: femwell
 #     language: python
@@ -15,7 +15,7 @@
 # %% [markdown]
 # # Waveguide crosstalk (EME)
 #
-# In this notebook, we reproduce Fig. 4.19 of , which calculates the maximum cross talk between strips waveguides of different dimensions.
+# In this notebook, we reproduce Fig. 4.19 of {cite}`Chrostowski2015Mar`, which calculates the maximum cross talk between strips waveguides of different dimensions.
 #
 # First, we setup a coupled waveguide system:
 
@@ -38,7 +38,7 @@ from femwell.visualization import plot_domains
 # First, we precisely extract the refractive index of silicon at 1.55 um using a Lorentz fit:
 
 # %%
-si_data = np.loadtxt("../reference_data/palik_silicon.txt", skiprows=1)
+si_data = np.loadtxt("../reference_data/Palik/palik_silicon.txt", skiprows=1)
 c = 299792458  # m/s
 
 
@@ -313,10 +313,10 @@ for width_B in widths_B:
 
 # %%
 Chrostowski_4p19a = np.genfromtxt(
-    "../reference_data/Chrostowski_4p19a.csv", skip_header=2, delimiter=","
+    "../reference_data/Chrostowski/Chrostowski_4p19a.csv", skip_header=2, delimiter=","
 )
 Chrostowski_4p19b = np.genfromtxt(
-    "../reference_data/Chrostowski_4p19b.csv", skip_header=2, delimiter=","
+    "../reference_data/Chrostowski/Chrostowski_4p19b.csv", skip_header=2, delimiter=","
 )
 
 # %%
@@ -396,3 +396,12 @@ plt.ylim([-60, 5])
 
 plt.ylabel("Normalized power in waveguide / dB")
 plt.xlabel("Length / um")
+
+
+# %% [markdown]
+# ## Bibliography
+#
+# ```{bibliography}
+# :style: unsrt
+# :filter: docname in docnames
+# ```

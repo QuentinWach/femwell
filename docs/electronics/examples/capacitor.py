@@ -59,7 +59,7 @@ delta_voltage = 1
 # </div>
 
 
-# %% tags=["remove-stderr"]
+# %% tags=["remove-stderr", "hide-output"]
 def parallel_plate_capacitor_mesh(
     width,
     separation=separation,
@@ -220,10 +220,10 @@ def capacitance(
     return C
 
 
-# %% tags=["remove-stderr"]
+# %% tags=["remove-stderr", "hide-output"]
 import tqdm
 
-widths = np.linspace(1, 50, 11)
+widths = np.linspace(1, 50, 21)
 Cs_dict = {}
 for dielectric_epsilon in [1, 3.9, 16]:
     Cs = []
@@ -239,7 +239,7 @@ for dielectric_epsilon in [1, 3.9, 16]:
         )
     Cs_dict[dielectric_epsilon] = Cs
 
-# +
+# %%
 colors = ["tab:blue", "tab:orange", "tab:green"]
 
 for dielectric_epsilon, color in zip([1, 3.9, 16], colors):
@@ -253,10 +253,11 @@ for dielectric_epsilon, color in zip([1, 3.9, 16], colors):
     plt.plot(
         widths, np.array(widths) * dielectric_epsilon / separation, color=color, linestyle="--"
     )
-    plt.xlabel("Width (a.u.)")
-    plt.ylabel(r"Capacitance per unit length / $\epsilon_0$ (a.u.)")
+    plt.xlabel("Width / a.u.")
+    plt.ylabel(r"Capacitance per unit length / $\epsilon_0$ / a.u.")
 
 plt.legend(title="Dielectric")
+plt.show()
 
 # %%
 colors = ["tab:blue", "tab:orange", "tab:green"]
@@ -271,10 +272,11 @@ for dielectric_epsilon, color in zip([1, 3.9, 16], colors):
         linestyle="-",
         label=dielectric_epsilon,
     )
-    plt.xlabel("Width (a.u.)")
-    plt.ylabel(r"Relative error in capacitance per unit length / $\epsilon_0$ (a.u.)")
+    plt.xlabel("Width / a.u.")
+    plt.ylabel(r"Relative error in capacitance per unit length / $\epsilon_0$ / a.u.")
 
 plt.legend(title="Dielectric")
+plt.show()
 
 
 # %% [markdown]
